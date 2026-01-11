@@ -140,6 +140,14 @@
             letter-spacing: 1px;
         }
 
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        .mobile-nav {
+            display: none;
+        }
+
         .nav-links {
             display: flex;
             gap: 40px;
@@ -873,6 +881,7 @@
         }
 
         @media (max-width: 768px) {
+            /* Navigation */
             nav {
                 padding: 15px 20px;
             }
@@ -881,30 +890,333 @@
                 display: none;
             }
 
+            .mobile-menu-btn {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 5px;
+            }
+
+            .mobile-menu-btn span {
+                display: block;
+                width: 24px;
+                height: 2px;
+                background: var(--white);
+                transition: all 0.3s ease;
+            }
+
+            .mobile-nav {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--black);
+                z-index: 1001;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .mobile-nav.active {
+                display: flex;
+            }
+
+            .mobile-nav a {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.8rem;
+                color: var(--white);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .mobile-nav a:hover {
+                color: var(--accent);
+            }
+
+            .mobile-nav-close {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: none;
+                border: none;
+                color: var(--white);
+                font-size: 2rem;
+                cursor: pointer;
+            }
+
+            /* Hero */
+            .hero {
+                min-height: 100svh;
+            }
+
             .hero-content {
                 margin-left: 0;
                 padding: 0 20px;
                 text-align: center;
             }
 
-            .hero p {
-                margin: 0 auto 40px;
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: 1px;
             }
 
+            .hero p {
+                font-size: 1rem;
+                margin: 0 auto 30px;
+            }
+
+            .hero-cta {
+                padding: 16px 28px;
+                font-size: 0.9rem;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            /* Sections */
             section {
-                padding: 80px 20px;
+                padding: 60px 20px;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+            }
+
+            .section-label {
+                font-size: 0.7rem;
+            }
+
+            /* About */
+            .about-image img {
+                height: 300px;
+            }
+
+            .about-image::before {
+                display: none;
+            }
+
+            .about-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .about-stats {
+                flex-direction: row;
+                justify-content: space-around;
+                gap: 15px;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
+            /* Gallery */
+            .gallery {
+                padding: 0;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2px;
+            }
+
+            /* Services - compact horizontal cards */
+            .service-cards {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .service-card {
+                padding: 18px;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto auto;
+                gap: 0 15px;
+                align-items: start;
+            }
+
+            .service-card .service-type-badge {
+                grid-column: 2;
+                grid-row: 1;
+                justify-self: start;
+                margin-bottom: 5px;
+            }
+
+            .service-card .service-icon {
+                grid-column: 1;
+                grid-row: 1 / 3;
+                width: 36px;
+                height: 36px;
+                margin: 0;
+                align-self: center;
+            }
+
+            .service-card h4 {
+                grid-column: 2;
+                grid-row: 2;
+                font-size: 1.1rem;
+                margin-bottom: 0;
+            }
+
+            .service-card p {
+                display: none;
+            }
+
+            .service-card .price {
+                display: block;
+                grid-column: 2;
+                grid-row: 3;
+                margin-top: 5px;
+                font-size: 0.85rem;
+            }
+
+            /* Form */
+            .repair-form.active {
+                margin-top: 40px;
+            }
+
+            .form-block {
+                padding: 25px 20px;
+                margin-bottom: 20px;
+            }
+
+            .form-block h3 {
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+                padding-bottom: 15px;
             }
 
             .form-row {
                 grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            label {
+                font-size: 0.8rem;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            select,
+            textarea {
+                padding: 14px 15px;
+                font-size: 16px; /* Prevents iOS zoom */
             }
 
             .checkbox-group {
                 grid-template-columns: 1fr;
+                gap: 10px;
             }
 
-            .form-block {
+            .checkbox-item {
+                padding: 14px 12px;
+            }
+
+            .submit-btn {
+                padding: 18px;
+                font-size: 0.9rem;
+            }
+
+            /* Autocomplete */
+            .autocomplete-list {
+                max-height: 200px;
+            }
+
+            .autocomplete-item {
+                padding: 12px 15px;
+            }
+
+            /* Testimonials */
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .testimonial {
                 padding: 30px 20px;
+            }
+
+            .testimonial-text {
+                font-size: 1rem;
+            }
+
+            /* Success */
+            .success-message {
+                padding: 60px 20px;
+            }
+
+            .success-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .success-message h2 {
+                font-size: 2rem;
+            }
+
+            .success-message p {
+                font-size: 1rem;
+            }
+
+            /* Footer */
+            footer {
+                padding: 50px 20px;
+                text-align: center;
+            }
+
+            .footer-brand h3 {
+                font-size: 1.5rem;
+            }
+
+            .footer-brand p {
+                font-size: 0.95rem;
+            }
+
+            .footer-content {
+                gap: 30px;
+            }
+
+            .footer-section ul {
+                padding: 0;
+            }
+
+            .footer-section h4 {
+                margin-bottom: 15px;
+            }
+
+            .footer-bottom {
+                margin-top: 30px;
+                padding-top: 20px;
+            }
+        }
+
+        /* Small phones */
+        @media (max-width: 380px) {
+            .hero h1 {
+                font-size: 2rem;
             }
 
             .about-stats {
@@ -912,8 +1224,8 @@
                 gap: 20px;
             }
 
-            .testimonial-grid {
-                grid-template-columns: 1fr;
+            .stat-number {
+                font-size: 2rem;
             }
         }
     </style>
@@ -928,7 +1240,21 @@
             <li><a href="#testimonials">Reviews</a></li>
             <li><a href="#services">Book Repair</a></li>
         </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">&times;</button>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#services">Book Repair</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1088,7 +1414,12 @@
             </div>
 
             <!-- Repair Form -->
-            <form class="repair-form" id="repairForm">
+            <form class="repair-form" id="repairForm" action="https://formsubmit.co/arthur@arthurswatch.ca" method="POST">
+                <!-- Formsubmit Configuration -->
+                <input type="hidden" name="_subject" value="New Watch Repair Request">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://arthurswatch.ca?submitted=true">
                 <!-- Quick Service Form -->
                 <div class="form-block" id="quickServiceDetails" style="display: none;">
                     <h3>Quick Service Details</h3>
@@ -1310,6 +1641,30 @@
                     navbar.classList.remove('scrolled');
                 }
             });
+
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavClose = document.getElementById('mobileNavClose');
+            const mobileNavLinks = mobileNav.querySelectorAll('a');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileNav.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            mobileNavClose.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+
 
             // Service card selection
             const serviceCards = document.querySelectorAll('.service-card');
