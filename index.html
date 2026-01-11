@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arthur's Watch Repair | Expert Timepiece Restoration</title>
+    <meta name="description" content="Professional watch repair services. From simple battery replacements to complex movement restoration. Trusted craftsmanship for your treasured timepiece.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --dark: #161616;
+            --darker: #111111;
+            --border: #2a2a2a;
+            --border-light: #333;
+            --gray: #969696;
+            --light: #e2e2e2;
+            --white: #ffffff;
+            --accent: #c9a959;
+            --accent-dim: #8a7a4a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background-color: var(--black);
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .animate-fade-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-fade {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animate-slide-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .animate-slide-right {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .delay-5 { animation-delay: 0.5s; opacity: 0; }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.95), rgba(10,10,10,0));
+            transition: background 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(10,10,10,0.98);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            filter: grayscale(30%);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.6) 50%, rgba(10,10,10,0.8) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 40px;
+            margin-left: 10%;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            font-weight: 300;
+            max-width: 500px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 36px;
+            background: var(--white);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .hero-cta:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hero-cta svg {
+            transition: transform 0.3s ease;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(5px);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--gray);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator .line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--gray), transparent);
+        }
+
+        /* Section styles */
+        section {
+            padding: 120px 40px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--darker);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            filter: grayscale(20%);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid var(--border);
+            z-index: -1;
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 24px;
+        }
+
+        .about-content p {
+            color: var(--gray);
+            font-weight: 300;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--accent);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            letter-spacing: 1px;
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--black);
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            padding: 40px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-5px);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card.selected {
+            border-color: var(--accent);
+        }
+
+        .service-card.selected::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .service-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .service-card .price {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--accent-dim);
+        }
+
+        .service-type-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            padding: 5px 10px;
+            background: var(--border);
+            color: var(--gray);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .service-type-badge.quick {
+            background: rgba(100, 180, 100, 0.15);
+            color: #7ab87a;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--darker);
+            padding: 80px 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease, filter 0.6s ease;
+            filter: grayscale(30%);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        /* Form Section */
+        .form-section {
+            background: var(--black);
+        }
+
+        .repair-form {
+            max-width: 800px;
+            margin: 0 auto;
+            display: none;
+            scroll-margin-top: 100px;
+        }
+
+        .repair-form.active {
+            display: block;
+            animation: fadeInUp 0.6s ease-out;
+            margin-top: 60px;
+        }
+
+        .form-block {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            padding: 50px;
+            margin-bottom: 30px;
+        }
+
+        .form-block h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            color: var(--gray);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 16px 18px;
+            background: var(--black);
+            border: 1px solid var(--border);
+            color: var(--light);
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(201, 169, 89, 0.1);
+        }
+
+        textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23969696' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        /* Autocomplete Styles */
+        .autocomplete-wrapper {
+            position: relative;
+        }
+
+        .autocomplete-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--dark);
+            border: 1px solid var(--border);
+            border-top: none;
+            max-height: 250px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+        }
+
+        .autocomplete-list.active {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .autocomplete-item {
+            padding: 14px 18px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .autocomplete-item:hover,
+        .autocomplete-item.highlighted {
+            background: var(--black);
+        }
+
+        .autocomplete-item .brand-country {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .autocomplete-item mark {
+            background: rgba(201, 169, 89, 0.3);
+            color: var(--light);
+        }
+
+        /* Checkbox group */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            padding: 12px 15px;
+            background: var(--black);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item:hover {
+            border-color: var(--border-light);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--accent);
+        }
+
+        .checkbox-item span {
+            font-size: 0.9rem;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: var(--accent);
+            color: var(--black);
+            border: none;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 80px 40px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .success-message.active {
+            display: block;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            color: var(--accent);
+        }
+
+        .success-message h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .success-message p {
+            color: var(--gray);
+            font-weight: 300;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--darker);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            padding: 40px;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: var(--light);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+        }
+
+        .testimonial-watch {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 80px 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            color: var(--gray);
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .footer-section h4 {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            color: var(--white);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                margin-left: 0;
+                padding: 0 20px;
+                text-align: center;
+            }
+
+            .hero p {
+                margin: 0 auto 40px;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .form-block {
+                padding: 30px 20px;
+            }
+
+            .about-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">Arthur's</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#services">Book Repair</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?auto=format&fit=crop&w=1920&q=80" alt="Luxury watch detail">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="animate-fade-up">
+                Time is <span>precious</span>.<br>
+                So is your watch.
+            </h1>
+            <p class="animate-fade-up delay-2">
+                Expert watch repair and restoration services. From vintage heirlooms to modern timepieces, we bring precision and care to every repair.
+            </p>
+            <a href="#services" class="hero-cta animate-fade-up delay-3">
+                Start Your Repair
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <div class="line"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image animate-slide-left">
+                    <img src="https://images.unsplash.com/photo-1620625515032-6ed0c1790c75?auto=format&fit=crop&w=800&q=80" alt="Watch repair craftsmanship">
+                </div>
+                <div class="about-content animate-slide-right">
+                    <span class="section-label">The Craft</span>
+                    <h2>Restoring more than watches. Preserving memories.</h2>
+                    <p>
+                        Every timepiece tells a story. Whether it's a grandfather's vintage Omega passed down through generations, or a modern Rolex marking a milestone achievement—your watch deserves expert care.
+                    </p>
+                    <p>
+                        At Arthur's Watch Repair, we combine traditional horological techniques with modern precision tools. Every watch that enters our workshop receives the same meticulous attention, whether it needs a simple battery replacement or a complete movement overhaul.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">2000+</span>
+                            <span class="stat-label">Watches Restored</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">Brands Serviced</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery">
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=600&q=80" alt="Luxury watch">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=600&q=80" alt="Watch mechanism">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?auto=format&fit=crop&w=600&q=80" alt="Vintage timepiece">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1585123334904-845d60e97b29?auto=format&fit=crop&w=600&q=80" alt="Watch collection">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services form-section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Our Services</span>
+                <h2>What does your watch need?</h2>
+                <p>Select a service below to begin your repair request. Quick services are often completed same-day.</p>
+            </div>
+
+            <div class="service-cards" id="serviceCards">
+                <div class="service-card" data-service="battery" data-type="quick">
+                    <span class="service-type-badge quick">Quick Service</span>
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="6" y="7" width="12" height="10" rx="1"/>
+                        <path d="M18 10h1a1 1 0 011 1v2a1 1 0 01-1 1h-1"/>
+                        <path d="M10 10v4M14 10v4"/>
+                    </svg>
+                    <h4>Battery Replacement</h4>
+                    <p>Professional battery replacement with quality cells. We reseal your case to maintain water resistance where applicable.</p>
+                    <p class="price">From $15</p>
+                </div>
+
+                <div class="service-card" data-service="crystal" data-type="quick">
+                    <span class="service-type-badge quick">Quick Service</span>
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                    <h4>Crystal Replacement</h4>
+                    <p>Replace scratched, cracked, or shattered watch crystals. We match your original crystal type—mineral, sapphire, or acrylic.</p>
+                    <p class="price">From $40</p>
+                </div>
+
+                <div class="service-card" data-service="band" data-type="quick">
+                    <span class="service-type-badge quick">Quick Service</span>
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="7" y="3" width="10" height="18" rx="2"/>
+                        <path d="M7 7h10M7 17h10"/>
+                    </svg>
+                    <h4>Band & Bracelet</h4>
+                    <p>Resize metal bracelets, replace worn straps, or fit a new band. Leather, rubber, NATO, and OEM options available.</p>
+                    <p class="price">From $10</p>
+                </div>
+
+                <div class="service-card" data-service="movement" data-type="full">
+                    <span class="service-type-badge">Full Service</span>
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+                    </svg>
+                    <h4>Movement Repair</h4>
+                    <p>Complete diagnosis and repair of mechanical or quartz movements. Includes cleaning, lubrication, and timing adjustment.</p>
+                    <p class="price">Quote upon assessment</p>
+                </div>
+
+                <div class="service-card" data-service="overhaul" data-type="full">
+                    <span class="service-type-badge">Full Service</span>
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                    <h4>Complete Overhaul</h4>
+                    <p>Full disassembly, ultrasonic cleaning, worn part replacement, lubrication, and reassembly. Recommended every 5-7 years.</p>
+                    <p class="price">Quote upon assessment</p>
+                </div>
+
+                <div class="service-card" data-service="other" data-type="full">
+                    <span class="service-type-badge">Full Service</span>
+                    <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/>
+                    </svg>
+                    <h4>Other Repairs</h4>
+                    <p>Crown replacement, stem repair, water damage restoration, dial refinishing, case polishing, and more. Describe your needs.</p>
+                    <p class="price">Quote upon assessment</p>
+                </div>
+            </div>
+
+            <!-- Repair Form -->
+            <form class="repair-form" id="repairForm">
+                <!-- Quick Service Form -->
+                <div class="form-block" id="quickServiceDetails" style="display: none;">
+                    <h3>Quick Service Details</h3>
+                    <div class="form-group autocomplete-wrapper">
+                        <label for="watchBrandQuick">Watch Brand</label>
+                        <input type="text" id="watchBrandQuick" name="watchBrand" placeholder="Start typing... (e.g., Seiko, Citizen)" autocomplete="off">
+                        <div class="autocomplete-list" id="brandListQuick"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="quickNotes">Additional Notes</label>
+                        <textarea id="quickNotes" name="notes" placeholder="Anything else we should know? Special requests, watch condition, etc."></textarea>
+                    </div>
+                </div>
+
+                <!-- Full Service Form -->
+                <div class="form-block" id="fullServiceDetails" style="display: none;">
+                    <h3>Tell Us About Your Watch</h3>
+                    <div class="form-row">
+                        <div class="form-group autocomplete-wrapper">
+                            <label for="watchBrand">Watch Brand *</label>
+                            <input type="text" id="watchBrand" name="watchBrand" placeholder="Start typing..." autocomplete="off" required>
+                            <div class="autocomplete-list" id="brandList"></div>
+                        </div>
+                        <div class="form-group autocomplete-wrapper">
+                            <label for="watchModel">Model</label>
+                            <input type="text" id="watchModel" name="watchModel" placeholder="Start typing or select brand first" autocomplete="off">
+                            <div class="autocomplete-list" id="modelList"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="watchType">Movement Type</label>
+                            <select id="watchType" name="watchType">
+                                <option value="">Select type...</option>
+                                <option value="automatic">Automatic (self-winding)</option>
+                                <option value="manual">Manual wind</option>
+                                <option value="quartz">Quartz (battery)</option>
+                                <option value="solar">Solar / Eco-Drive</option>
+                                <option value="kinetic">Kinetic</option>
+                                <option value="spring-drive">Spring Drive</option>
+                                <option value="unknown">Not sure</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="watchAge">Approximate Age</label>
+                            <select id="watchAge" name="watchAge">
+                                <option value="">Select age...</option>
+                                <option value="new">Less than 5 years</option>
+                                <option value="medium">5-20 years</option>
+                                <option value="vintage">20-50 years</option>
+                                <option value="antique">50+ years / Antique</option>
+                                <option value="unknown">Unknown</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>What issues are you experiencing?</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="issues" value="not-running">
+                                <span>Watch stopped running</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="issues" value="losing-time">
+                                <span>Losing or gaining time</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="issues" value="water-damage">
+                                <span>Water damage / moisture</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="issues" value="winding-issue">
+                                <span>Winding problems</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="issues" value="crown-issue">
+                                <span>Crown won't set/pull</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="issues" value="cosmetic">
+                                <span>Cosmetic damage</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="issueDescription">Describe the Problem *</label>
+                        <textarea id="issueDescription" name="issueDescription" placeholder="When did you first notice the issue? What symptoms are you seeing? Any relevant history (drops, water exposure, last service date)?" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="form-block" id="contactSection" style="display: none;">
+                    <h3>Your Contact Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customerName">Full Name *</label>
+                            <input type="text" id="customerName" name="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">Email Address *</label>
+                            <input type="email" id="customerEmail" name="customerEmail" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customerPhone">Phone Number</label>
+                            <input type="tel" id="customerPhone" name="customerPhone" placeholder="(optional)">
+                        </div>
+                        <div class="form-group">
+                            <label for="preferredContact">Preferred Contact Method</label>
+                            <select id="preferredContact" name="preferredContact">
+                                <option value="email">Email</option>
+                                <option value="phone">Phone call</option>
+                                <option value="text">Text message</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="selectedService" name="selectedService">
+                    <input type="hidden" id="serviceType" name="serviceType">
+
+                    <button type="submit" class="submit-btn">Submit Repair Request</button>
+                </div>
+            </form>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <svg class="success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                    <polyline points="22,4 12,14.01 9,11.01"/>
+                </svg>
+                <h2>Request Received</h2>
+                <p>Thank you for choosing Arthur's Watch Repair. Your request has been submitted and Arthur will be in touch within 24 hours to discuss your timepiece and arrange drop-off.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Testimonials</span>
+                <h2>What Our Clients Say</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">"Arthur brought my grandfather's 1960s Omega Seamaster back to life. It had been sitting in a drawer for 20 years, and now it runs perfectly. The attention to detail was remarkable."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">M</div>
+                        <div>
+                            <div class="testimonial-name">Michael T.</div>
+                            <div class="testimonial-watch">Omega Seamaster</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Quick, professional battery replacement for my Tag Heuer. In and out in 15 minutes, and they even cleaned the case. Fair prices and honest service—exactly what you want."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">S</div>
+                        <div>
+                            <div class="testimonial-name">Sarah K.</div>
+                            <div class="testimonial-watch">Tag Heuer Aquaracer</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"My Rolex Submariner needed a complete overhaul. Arthur explained everything, gave me a fair quote, and the watch came back running better than ever. Highly recommended."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">D</div>
+                        <div>
+                            <div class="testimonial-name">David R.</div>
+                            <div class="testimonial-watch">Rolex Submariner</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Arthur's Watch Repair</h3>
+                <p>Expert watch repair and restoration services. Bringing precision, care, and decades of experience to every timepiece that comes through our door.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Battery Replacement</a></li>
+                    <li><a href="#services">Crystal Replacement</a></li>
+                    <li><a href="#services">Movement Repair</a></li>
+                    <li><a href="#services">Complete Overhaul</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:arthur@arthurswatch.ca">arthur@arthurswatch.ca</a></li>
+                    <li>Currently at the Roll Top</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Arthur's Watch Repair. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="watches.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Service card selection
+            const serviceCards = document.querySelectorAll('.service-card');
+            const repairForm = document.getElementById('repairForm');
+            const quickServiceDetails = document.getElementById('quickServiceDetails');
+            const fullServiceDetails = document.getElementById('fullServiceDetails');
+            const contactSection = document.getElementById('contactSection');
+            const selectedServiceInput = document.getElementById('selectedService');
+            const serviceTypeInput = document.getElementById('serviceType');
+            const successMessage = document.getElementById('successMessage');
+            const serviceCardsContainer = document.getElementById('serviceCards');
+
+            serviceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    serviceCards.forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    const service = this.dataset.service;
+                    const type = this.dataset.type;
+
+                    selectedServiceInput.value = service;
+                    serviceTypeInput.value = type;
+
+                    repairForm.classList.add('active');
+                    contactSection.style.display = 'block';
+
+                    if (type === 'quick') {
+                        quickServiceDetails.style.display = 'block';
+                        fullServiceDetails.style.display = 'none';
+                        document.getElementById('watchBrand').required = false;
+                        document.getElementById('issueDescription').required = false;
+                    } else {
+                        quickServiceDetails.style.display = 'none';
+                        fullServiceDetails.style.display = 'block';
+                        document.getElementById('watchBrand').required = true;
+                        document.getElementById('issueDescription').required = true;
+                    }
+
+                    setTimeout(() => {
+                        repairForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                });
+            });
+
+            // Autocomplete functionality
+            function setupAutocomplete(inputId, listId, searchFn, onSelect) {
+                const input = document.getElementById(inputId);
+                const list = document.getElementById(listId);
+                if (!input || !list) return;
+
+                let highlightedIndex = -1;
+
+                input.addEventListener('input', function() {
+                    const query = this.value;
+                    const results = searchFn(query);
+
+                    if (results.length === 0 || query.length === 0) {
+                        list.classList.remove('active');
+                        return;
+                    }
+
+                    list.innerHTML = results.map((item, index) => {
+                        const brandInfo = typeof item === 'string' ? getBrandInfo(item) : null;
+                        const displayName = typeof item === 'string' ? item : item;
+                        const highlighted = displayName.replace(
+                            new RegExp(`(${query})`, 'gi'),
+                            '<mark>$1</mark>'
+                        );
+                        return `
+                            <div class="autocomplete-item" data-value="${displayName}" data-index="${index}">
+                                <span>${highlighted}</span>
+                                ${brandInfo ? `<span class="brand-country">${brandInfo.country}</span>` : ''}
+                            </div>
+                        `;
+                    }).join('');
+
+                    list.classList.add('active');
+                    highlightedIndex = -1;
+                });
+
+                input.addEventListener('keydown', function(e) {
+                    const items = list.querySelectorAll('.autocomplete-item');
+
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        highlightedIndex = Math.min(highlightedIndex + 1, items.length - 1);
+                        updateHighlight(items);
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        highlightedIndex = Math.max(highlightedIndex - 1, 0);
+                        updateHighlight(items);
+                    } else if (e.key === 'Enter' && highlightedIndex >= 0) {
+                        e.preventDefault();
+                        const selected = items[highlightedIndex];
+                        if (selected) {
+                            input.value = selected.dataset.value;
+                            list.classList.remove('active');
+                            if (onSelect) onSelect(selected.dataset.value);
+                        }
+                    } else if (e.key === 'Escape') {
+                        list.classList.remove('active');
+                    }
+                });
+
+                function updateHighlight(items) {
+                    items.forEach((item, index) => {
+                        item.classList.toggle('highlighted', index === highlightedIndex);
+                    });
+                }
+
+                list.addEventListener('click', function(e) {
+                    const item = e.target.closest('.autocomplete-item');
+                    if (item) {
+                        input.value = item.dataset.value;
+                        list.classList.remove('active');
+                        if (onSelect) onSelect(item.dataset.value);
+                    }
+                });
+
+                document.addEventListener('click', function(e) {
+                    if (!input.contains(e.target) && !list.contains(e.target)) {
+                        list.classList.remove('active');
+                    }
+                });
+            }
+
+            // Setup brand autocomplete for both forms
+            setupAutocomplete('watchBrand', 'brandList', searchBrands, function(brand) {
+                // Update model suggestions when brand is selected
+                const modelInput = document.getElementById('watchModel');
+                if (modelInput) {
+                    modelInput.placeholder = `Select ${brand} model...`;
+                    modelInput.dataset.brand = brand;
+                }
+            });
+
+            setupAutocomplete('watchBrandQuick', 'brandListQuick', searchBrands);
+
+            // Setup model autocomplete
+            setupAutocomplete('watchModel', 'modelList', function(query) {
+                const brandInput = document.getElementById('watchBrand');
+                const brand = brandInput ? brandInput.value : '';
+                return searchModels(brand, query);
+            });
+
+            // Form submission
+            repairForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const formData = new FormData(repairForm);
+                const data = {};
+                const issues = [];
+
+                document.querySelectorAll('input[name="issues"]:checked').forEach(cb => {
+                    issues.push(cb.value);
+                });
+
+                formData.forEach((value, key) => {
+                    if (key !== 'issues') {
+                        data[key] = value;
+                    }
+                });
+                data.issues = issues.join(', ');
+
+                const serviceNames = {
+                    'battery': 'Battery Replacement',
+                    'crystal': 'Crystal Replacement',
+                    'band': 'Band & Bracelet Service',
+                    'movement': 'Movement Repair',
+                    'overhaul': 'Complete Overhaul',
+                    'other': 'Other Repair'
+                };
+
+                let emailBody = `NEW WATCH REPAIR REQUEST\n`;
+                emailBody += `${'='.repeat(40)}\n\n`;
+                emailBody += `SERVICE REQUESTED: ${serviceNames[data.selectedService]}\n`;
+                emailBody += `Service Type: ${data.serviceType === 'quick' ? 'Quick Service' : 'Full Service'}\n\n`;
+                emailBody += `CUSTOMER INFORMATION\n`;
+                emailBody += `${'-'.repeat(20)}\n`;
+                emailBody += `Name: ${data.customerName}\n`;
+                emailBody += `Email: ${data.customerEmail}\n`;
+                emailBody += `Phone: ${data.customerPhone || 'Not provided'}\n`;
+                emailBody += `Preferred Contact: ${data.preferredContact}\n\n`;
+                emailBody += `WATCH DETAILS\n`;
+                emailBody += `${'-'.repeat(20)}\n`;
+                emailBody += `Brand: ${data.watchBrand || 'Not specified'}\n`;
+
+                if (data.serviceType === 'full') {
+                    emailBody += `Model: ${data.watchModel || 'Not specified'}\n`;
+                    emailBody += `Movement Type: ${data.watchType || 'Not specified'}\n`;
+                    emailBody += `Approximate Age: ${data.watchAge || 'Not specified'}\n`;
+                    emailBody += `Issues Selected: ${data.issues || 'None'}\n\n`;
+                    emailBody += `PROBLEM DESCRIPTION\n`;
+                    emailBody += `${'-'.repeat(20)}\n`;
+                    emailBody += `${data.issueDescription}\n`;
+                } else {
+                    emailBody += `\nNOTES\n`;
+                    emailBody += `${'-'.repeat(20)}\n`;
+                    emailBody += `${data.notes || 'None provided'}\n`;
+                }
+
+                const subject = encodeURIComponent(`Watch Repair: ${serviceNames[data.selectedService]} - ${data.customerName}`);
+                const body = encodeURIComponent(emailBody);
+                window.location.href = `mailto:arthur@arthurswatch.ca?subject=${subject}&body=${body}`;
+
+                document.querySelector('.section-header').style.display = 'none';
+                serviceCardsContainer.style.display = 'none';
+                repairForm.style.display = 'none';
+                successMessage.classList.add('active');
+
+                window.scrollTo({ top: document.getElementById('services').offsetTop - 100, behavior: 'smooth' });
+            });
+
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0) translateX(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-fade-up, .animate-slide-left, .animate-slide-right').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
