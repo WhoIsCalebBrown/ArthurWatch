@@ -1149,18 +1149,54 @@
                 padding: 12px 15px;
             }
 
-            /* Testimonials */
+            /* Testimonials - horizontal scroll */
+            .testimonials {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .testimonials .section-header {
+                padding: 0 20px;
+            }
+
             .testimonial-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 15px;
+                padding: 0 20px 20px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                cursor: grab;
+            }
+
+            .testimonial-grid::-webkit-scrollbar {
+                display: none;
             }
 
             .testimonial {
-                padding: 30px 20px;
+                flex: 0 0 85%;
+                scroll-snap-align: center;
+                padding: 25px 20px;
             }
 
             .testimonial-text {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+
+            .testimonial-avatar {
+                width: 40px;
+                height: 40px;
                 font-size: 1rem;
+            }
+
+            .testimonial-name {
+                font-size: 0.9rem;
+            }
+
+            .testimonial-watch {
+                font-size: 0.8rem;
             }
 
             /* Success */
@@ -1665,6 +1701,41 @@
                 });
             });
 
+            // Drag to scroll for testimonials (only when scrollable)
+            const testimonialGrid = document.querySelector('.testimonial-grid');
+            if (testimonialGrid) {
+                let isDown = false;
+                let startX;
+                let scrollLeft;
+
+                const isScrollable = () => testimonialGrid.scrollWidth > testimonialGrid.clientWidth;
+
+                testimonialGrid.addEventListener('mousedown', (e) => {
+                    if (!isScrollable()) return;
+                    isDown = true;
+                    testimonialGrid.style.cursor = 'grabbing';
+                    startX = e.pageX - testimonialGrid.offsetLeft;
+                    scrollLeft = testimonialGrid.scrollLeft;
+                });
+
+                testimonialGrid.addEventListener('mouseleave', () => {
+                    isDown = false;
+                    if (isScrollable()) testimonialGrid.style.cursor = 'grab';
+                });
+
+                testimonialGrid.addEventListener('mouseup', () => {
+                    isDown = false;
+                    if (isScrollable()) testimonialGrid.style.cursor = 'grab';
+                });
+
+                testimonialGrid.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - testimonialGrid.offsetLeft;
+                    const walk = (x - startX) * 2;
+                    testimonialGrid.scrollLeft = scrollLeft - walk;
+                });
+            }
 
             // Service card selection
             const serviceCards = document.querySelectorAll('.service-card');
